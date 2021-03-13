@@ -24,7 +24,9 @@ defmodule GenReport.Parser do
     line
     |> String.trim()
     |> String.split(",")
+    |> List.update_at(0, &String.to_atom(&1))
     |> List.update_at(1, &String.to_integer(&1))
-    |> List.update_at(3, &Map.get(@months, &1))
+    |> List.update_at(3, &String.to_atom(Map.get(@months, &1)))
+    |> List.update_at(4, &String.to_atom(&1))
   end
 end
